@@ -15,14 +15,24 @@
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: rgb(228, 228, 228);
+  box-shadow: inset 0px -0.5px 0px #e6e6e6;
 
 }
 
-.left-section {
+
+.header .container {
+  flex:1;
+  padding: 7px 10px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  padding-right: 20px;
+}
 
 .website-name{
   font-size: 20px;
@@ -32,84 +42,68 @@
 }
 
 .website-logo {
-  height: 70%;
+  height: 50px;
   margin-left: 20px;
 }
 
-.middle-section {
+.header-middle-center {
+  padding: 0 30px;
   flex: 1;
-  margin-left: 70px;
-  max-width: 500px;
-  min-width: auto;
-  display: flex;
-  align-items: center;
-  position: relative;
 }
 
 .form-search {
   display: flex;
+  justify-content: center;
   position: relative;
-  width: 65%;
 }
 
-.search-bar {
-  flex: 1;
-  height: 34px;
-  width: auto;
-  padding-left: 10px;
-  font-size: 16px;
-  border: 2px solid rgb(122, 14, 14);
-  box-shadow: outset 1px 2px 3px rgba(122, 14, 14, 0.5);
-  position: relative;
-  border-left: none;
-  border-right: none;
-}
-
-.search-bar::placeholder {
-  font-size: 16px;
-}
-
-.search-button {
+.form-search-input {
   height: 40px;
-  width: 66px;
-  background-color: rgb(122, 14, 14);
-  border-width: 1px;
-  border-style: solid;
-  border-top-left-radius: 99px;
-  border-bottom-left-radius: 99px;
-  border-right: none;
-  border-color: rgb(122, 14, 14);
-  position: relative;
-
-}
-
-.search-button i{
-  font-size: 30px;
-  color: azure;
-}
-
-.filter-border {
-  height: 38px;
-  width: 80px;
-  border-width: 1px;
-  border-style: solid;
+  outline: none;
+  border: none;
+  background-color: #f0f0f0;
+  padding: 10px 20px;
+  padding-left: 0;
   border-top-right-radius: 99px;
   border-bottom-right-radius: 99px;
-  border-left: none;
-  background-color: rgb(122, 14, 14);
-  border-color: rgb(122, 14, 14);
-  border-left: none;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding-left: 10px;
+  width: 65%;
+  /* border: 1px solid #e6ecf0;
+  background-color: #f5f8fa; */
 }
 
-.filter-border i {
-  font-size: 25px;
-  color: azure;
+.filter-btn,
+.search-btn {
+  border: none;
+  outline: none;
+  font-size: 20px;
+  height: 40px;
+  padding: 0 15px;
+  color: text;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.search-btn {
+  background-color: #f0f0f0;
+  border-top-left-radius: 99px;
+  border-bottom-left-radius: 99px;
+}
+
+.filter-btn {
+  background-color: rgb(122, 14, 14);
+  height: 30px;
+  color: white;
+  width: 75px;
+  border-radius: 99px;
+  position: relative;
+  right: 80px;
+  top: 5px
+}
+
+.filter-btn span {
+  font-size: 14px;
   margin-left: 5px;
-  margin-right: 5px;
 }
 
 .search-button,
@@ -122,7 +116,7 @@
 }
 
 .search-button .tooltip,
-.voice-search-button .tooltip,
+.logo .tooltip,
 .upload-icon-container .tooltip {
   position: absolute;
   background-color: gray;
@@ -146,6 +140,8 @@
   opacity: 1;
 }
 
+
+
 .right-section {
   width: 180px;
   margin-right: 20px;
@@ -167,7 +163,6 @@
   position: relative;
 }
 
-
 .notifications-count {
   position: relative;
   top: -15px;
@@ -182,5 +177,62 @@
   border-radius: 10px;
 }
 
+.header-bottom {
+  transition: transform 0.6s ease;
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 3px 5px 0 rgb(0 0 0 / 10%);
+  z-index: 4;
+}
+
+.container {
+  max-width: 1130px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+.header-bottom.hide {
+  transform: translateY(-50px);
+}
+
+.menu-list {
+  display: flex;
+  height: 49px;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.menu-link {
+  color: black;
+  display: inline-block;
+  padding: 15px 20px;
+  text-transform: uppercase;
+  position: relative;
+  font-size: 15px;
+}
+
+.menu-link:hover::after {
+  visibility: visible;
+  transform: scale(1);
+  opacity: 1;
+}
+
+.menu-link::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  visibility: hidden;
+  transform: scale(0);
+  opacity: 0;
+  transition: visibility 0.3s, transform 0.3s, opacity 0.3s;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background-color: rgb(122, 14, 14);
+  transition: all 0.3s ease;
+}
 
 
