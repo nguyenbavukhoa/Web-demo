@@ -80,6 +80,16 @@
 
 /*Product*/
 
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 40px;
+    padding-left: 10px;
+    padding-right: 15px;
+    max-width: 1130px;
+}
+
 .thumbnail {
     width: 100%;
     border-radius: 12px;
@@ -102,6 +112,7 @@
 }
 
 .product-preview {
+    width: 100%;
     border-radius: 15px;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -158,16 +169,6 @@
     background-color: rgb(122, 14, 14);
     color: white;
     border: 2px outset rgb(122, 14, 14);
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 20px;
-    row-gap: 40px;
-    margin-bottom: 50px;
-    padding-left: 10px;
-    padding-right: 15px;
 }
 
 .video-time {
