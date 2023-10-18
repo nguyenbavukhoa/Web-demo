@@ -12,6 +12,7 @@ window.addEventListener("scroll", () => {
 })
 
 // Auto switch main-wrapper
+
 var counter = 1;
 setInterval(function() {
     document.getElementById('radio' + counter).checked = true;
@@ -19,4 +20,5 @@ setInterval(function() {
     if (counter > 4) {
         counter = 1;
     }
-}, 5000);
+}, 3000);
+
