@@ -2,7 +2,7 @@
 ### Thành viên nhóm:
 - Nguyễn Bá Vũ Khoa - 3122411097 - Leader
 - Nguyễn Ngô Thanh Tú - 3122411231
-- Vũ Văn Minh - 
+- Vũ Văn Minh - 3122411129
 
 
 ### Demo
