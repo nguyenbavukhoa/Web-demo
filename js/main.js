@@ -27,17 +27,17 @@ setInterval(function () {
 var listProducts = document.querySelector('.product-grid');
 
 function uploadProduct(products) {
-    // var products = null;
-    // fetch('products.json')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         products = data;
-    //         console.log(products);
-    //         addDataToHTML();
-    //     })
+    var products = null;
+    fetch('products.json')
+        .then(response => response.json())
+        .then(data => {
+            products = data;
+            console.log(products);
+            addDataToHTML();
+        })
 
-    let productAll = products.filter(item => item.status == 1)
-    console.log(productAll);
+    // let productAll = products.filter(item => item.status == 1)
+    // console.log(productAll);
     // add data products to HTML
     function addDataToHTML() {
         products.forEach(product => {
@@ -69,7 +69,7 @@ function uploadProduct(products) {
         });
 
     }
-    addDataToHTML();
+    // addDataToHTML();
 }
 
 window.onload = uploadProduct(JSON.parse(localStorage.getItem('products')))
