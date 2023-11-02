@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KTM Food</title>
+    <link href="assets/img/logo/webLogo.png" rel="icon" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="assets/CSS/general.css" />
+    <link rel="stylesheet" href="assets/CSS/header.css" />
+    <link rel="stylesheet" href="assets/CSS/main-menu.css" />
+    <link rel="stylesheet" href="assets/CSS/home-reponsive.css" />
+    <link rel="stylesheet" href="assets/CSS/footer.css" />
+    <link rel="stylesheet" href="./assets/fonts/font-awesome-pro-v6-6.2.0/css/all.min.css" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div onclick="window.location.href='./index.html'" class="header-left">
+                <img class="website-logo" src="assets/img/logo/webLogo.png" />
+                <div class="website-name">KTM Food</div>
+            </div>
+            <div class="header-middle-center">
+                <form action="" class="form-search">
+                    <span class="search-btn"><i class="fa-light fa-magnifying-glass"></i></span>
+                    <input type="text" class="form-search-input" placeholder="Tìm kiếm món ăn..."
+                        oninput="searchProducts()">
+                    <button class="filter-btn"><i class="fa-light fa-filter-list"></i><span>Lọc</span></button>
+                </form>
+            </div>
+
+            <div class="right-section">
+                <img class="user-icon" src="assets/img/icons/user.png" />
+                <img class="shopping-icon" src="assets/img/icons/shopping-cart.png" />
+                <div class="notifications-count">0</div>
+            </div>
+        </div>
+        </div>
+
+    </header>
+    <nav class="header-bottom">
+        <div class="container">
+            <ul class="menu-list">
+                <li class="menu-list-item"><a href="./index.html" class="menu-link">Trang chủ</a></li>
+                <li class="menu-list-item" onclick="showCategory('Món chay')"><a href="javascript:;"
+                        class="menu-link">Món
+                        chay</a></li>
+                <li class="menu-list-item" onclick="showCategory('Món mặn')"><a href="javascript:;"
+                        class="menu-link">Món
+                        mặn</a></li>
+                <li class="menu-list-item" onclick="showCategory('Món lẩu')"><a href="javascript:;"
+                        class="menu-link">Món
+                        lẩu</a></li>
+                <li class="menu-list-item" onclick="showCategory('Món ăn vặt')"><a href="javascript:;"
+                        class="menu-link">Món ăn
+                        vặt</a></li>
+                <li class="menu-list-item" onclick="showCategory('Món tráng miệng')"><a href="javascript:;"
+                        class="menu-link">Món tráng miệng</a></li>
+                <li class="menu-list-item" onclick="showCategory('Nước uống')"><a href="javascript:;"
+                        class="menu-link">Nước
+                        uống</a></li>
+                <li class="menu-list-item" onclick="showCategory('Món khác')"><a href="javascript:;"
+                        class="menu-link">Món
+                        khác</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="mainDetail">
+        <div class="container">
+            <div class="detailTitle">PRODUCT DETAIL</div>
+            <div class="detail">
+                <div class="image">
+                    <img src="" alt="">
+                </div>
+                <div class="content">
+                    <h1 class="name"></h1>
+                    <div class="price"></div>
+                    <div class="center">
+                        <button class="order-button">
+                            <i class='bx bx-cart'></i>
+                            <p>Đặt món</p>
+                        </button>
+                    </div>
+                    <div class="description"></div>
+                </div>
+                
+            </div>
+        </div>
+
+    </main>
+    <footer class="footer">
+        <div class="widget-area">
+            <div class="container">
+                <div class="widget-row">
+                    <div class="widget-row-col-1">
+                        <h3 class="widget-title">Về chúng tôi</h3>
+                        <div class="widget-row-col-content">
+                            <p>KTM Food là thương hiệu được thành lập vào năm 2022 với tiêu chí đặt chất lượng sản phẩm
+                                lên hàng đầu.
+                            </p>
+                        </div>
+                        <div class="widget-social">
+                            <div class="widget-social-item">
+                                <a href="">
+                                    <i class='bx bxl-facebook'></i>
+                                </a>
+                            </div>
+                            <div class="widget-social-item">
+                                <a href="">
+                                    <i class='bx bxl-twitter'></i>
+                                </a>
+                            </div>
+                            <div class="widget-social-item">
+                                <a href="">
+                                    <i class='bx bxl-linkedin'></i>
+                                </a>
+                            </div>
+                            <div class="widget-social-item">
+                                <a href="">
+                                    <i class='bx bxl-whatsapp'></i></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="./js/detailProduct.js"></script>
+</body>
+
+</html>

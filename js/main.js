@@ -14,7 +14,7 @@ window.addEventListener("scroll", () => {
 // Auto switch main-wrapper
 
 var counter = 1;
-setInterval(function() {
+setInterval(function () {
     document.getElementById('radio' + counter).checked = true;
     counter++;
     if (counter > 4) {
@@ -22,3 +22,49 @@ setInterval(function() {
     }
 }, 3000);
 
+// get datas from products.json 
+
+var listProducts = document.querySelector('.product-grid');
+
+function uploadProduct() {
+    var products = null;
+    fetch('products.json')
+        .then(response => response.json())
+        .then(data => {
+            products = data;
+            console.log(products);
+            addDataToHTML();
+        })
+    // add data products to HTML
+
+    function addDataToHTML() {
+        products.forEach(product => {
+            // create new element item
+            let newProduct = document.createElement('a');
+            newProduct.href = 'productDetail.html?id=' + product.id;
+            newProduct.classList.add('item');
+            newProduct.innerHTML = `
+        <div class="product-preview">
+        <img class="thumbnail" src="${product.img}">
+        <div class="product-info">
+            <p class="product-title">
+                ${product.title}
+            </p>
+            <p class="product-price">${product.price} &#8363;</p>
+            <div class="center">
+                <button class="order-button">
+                    <i class='bx bx-cart'></i>
+                    <p>Đặt món</p>
+                </button>
+            </div>
+        </div>
+    </div>
+        `;
+
+
+            // add this element in product-grid class
+            listProducts.appendChild(newProduct);
+        });
+    }
+}
+window.onload = uploadProduct();
