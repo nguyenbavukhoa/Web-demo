@@ -26,45 +26,50 @@ setInterval(function () {
 
 var listProducts = document.querySelector('.product-grid');
 
-function uploadProduct() {
-    var products = null;
-    fetch('products.json')
-        .then(response => response.json())
-        .then(data => {
-            products = data;
-            console.log(products);
-            addDataToHTML();
-        })
-    // add data products to HTML
+function uploadProduct(products) {
+    // var products = null;
+    // fetch('products.json')
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         products = data;
+    //         console.log(products);
+    //         addDataToHTML();
+    //     })
 
+    let productAll = products.filter(item => item.status == 1)
+    console.log(productAll);
+    // add data products to HTML
     function addDataToHTML() {
         products.forEach(product => {
+            console.log(product);
             // create new element item
             let newProduct = document.createElement('a');
             newProduct.href = 'productDetail.html?id=' + product.id;
             newProduct.classList.add('item');
+            console.log(product.title);
             newProduct.innerHTML = `
-        <div class="product-preview">
-        <img class="thumbnail" src="${product.img}">
-        <div class="product-info">
-            <p class="product-title">
-                ${product.title}
-            </p>
-            <p class="product-price">${product.price} &#8363;</p>
-            <div class="center">
-                <button class="order-button">
-                    <i class='bx bx-cart'></i>
-                    <p>Đặt món</p>
-                </button>
+            <div class="product-preview">
+                <img class="thumbnail" src="${product.img}">
+                <div class="product-info">
+                    <p class="product-title">
+                        ${product.title}
+                    </p>
+                    <p class="product-price">${product.price} &#8363;</p>
+                    <div class="center">
+                        <button class="order-button">
+                            <i class='bx bx-cart'></i>
+                            <p>Đặt món</p>
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-        `;
-
-
+            `;
             // add this element in product-grid class
             listProducts.appendChild(newProduct);
         });
+
     }
+    addDataToHTML();
 }
-window.onload = uploadProduct();
+
+window.onload = uploadProduct(JSON.parse(localStorage.getItem('products')))

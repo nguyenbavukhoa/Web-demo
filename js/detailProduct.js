@@ -1,13 +1,15 @@
 // get datas product in products.json
-var products = null;
-fetch('products.json')
- .then(function(response) {
-    return response.json();
-  })
-  .then(data => {
-    products = data;
-    showDetail();
-  })
+// var products = null;
+// fetch('products.json')
+//  .then(function(response) {
+//     return response.json();
+//   })
+//   .then(data => {
+//     products = data;
+//     showDetail();
+//   })
+var products = JSON.parse(localStorage.getItem('products'));
+window.onload = showDetail();
 // find this product
 function showDetail() {
     let detail = document.querySelector('.detail');
