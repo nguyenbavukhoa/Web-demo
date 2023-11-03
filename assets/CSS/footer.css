@@ -1,7 +1,7 @@
 .footer {
     background-color: #f2f2f2;
     margin-top: 30px;
-    border-top: 4px solid rgba(0, 0, 0, 0.8)
+    border-top: 5px solid rgba(144, 12, 12, 0.7)
 }
 
 .footer .container {
@@ -11,12 +11,19 @@
 
 .widget-area {
     padding: 60px 0 30px;
-    margin-left: 50px;
 }
 
 .widget-row {
     display: flex;
     justify-content: space-between;
+}
+
+.widget-row-col {
+    width: 15%;
+}
+
+.widget-row-col-1 {
+    width: 25%;
 }
 
 .widget-row>div {
@@ -40,13 +47,13 @@
     border-top: none;
     height: 3px;
     width: 100px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent);
+    background-image: linear-gradient(to right, rgba(144, 12, 12, 0.8), transparent);
 }
 
 .widget-row-col-content {
     padding-bottom: 18px;
     font-size: 16px;
-    font-weight: 350;
+    font-weight: 400;
     line-height: 1.5;
 }
 
@@ -67,6 +74,22 @@
     transition: transform 0.3s linear;
 }
 
+.widget-contact-item {
+    margin-bottom: 12px;
+}
+
+.widget-contact-item i {
+    transition: transform 0.3s linear;
+}
+
+.widget-contact-item a {
+    color: #2C2C2C;
+}
+
+.widget-contact-item:hover i {
+    transform: translateX(4px);
+}
+
 .widget-social-item:hover {
     background-color: rgb(144, 12, 12, 0.8);
     transform: scale(1.1);
@@ -74,9 +97,71 @@
 }
 
 .widget-social-item:hover i {
-    color: #ffff;
+    color: #fff;
 }
 
 .widget-social-item i {
     color: #2C2C2C;
+}
+
+.widget-contact i {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.widget-contact span {
+    font-weight: 400;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.contact-item-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(144, 12, 12, 0.8);
+    color: #fff;
+}
+
+.contact-content {
+    margin-left: 10px;
+    width: 80%;
+    line-height: 1.5;
+    font-size: 15px;
+}
+
+.copyright-wrap {
+    background: #f3f5f7;
+    color: #2C2C2C;
+    margin: unset;
+    padding: 18px 0;
+    border-top: 1px solid #e6e6e6;
+}
+
+.copyright-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copyright-wrap {
+    background: #f3f5f7;
+    color: #2C2C2C;
+    margin: unset;
+    padding: 18px 0;
+    border-top: 1px solid #e6e6e6;
+}
+
+.copyright-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#2C2C2C;
 }

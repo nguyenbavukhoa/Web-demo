@@ -27,11 +27,12 @@ setInterval(function () {
 function uploadProduct(showProduct) {
     // add data products to HTML
     let productHtml = '';
+    let listProducts = document.querySelector('.main-menu');
     if(showProduct.length == 0) {
         document.getElementById("home-title").style.display = "none";
         productHtml = `<div class="no-result"><div class="no-result-h">Tìm kiếm không có kết quả</div><div class="no-result-p">Xin lỗi, chúng tôi không thể tìm được kết quả hợp với tìm kiếm của bạn</div><div class="no-result-i"><i class="fa-light fa-face-sad-cry"></i></div></div>`;
     } else {
-        productHtml = showProduct.map(function(product) 
+        let products = showProduct.map(function(product) 
         {
             return `
             <a href="productDetail.html?id=${product.id}" class="item">
@@ -52,14 +53,13 @@ function uploadProduct(showProduct) {
             </div>
             </a>
             `;
+           
         });
-        
+        document.getElementById("home-title").style.display = ""; 
+        productHtml = `<section class="product-grid">${products.join('')}</section><section style`;  
     }
-    console.log(productHtml);
-    let listProducts = document.querySelector('.product-grid');
-    listProducts.innerHTML = productHtml.join('');
-    
-    
+    listProducts.innerHTML = productHtml;
+       
 }
 
 window.onload = uploadProduct(JSON.parse(localStorage.getItem('products')));
@@ -67,9 +67,20 @@ window.onload = uploadProduct(JSON.parse(localStorage.getItem('products')));
 var productAll = JSON.parse(localStorage.getItem('products'));
 function searchProducts() {
     let result = productAll;
-    let valeSearchInput = document.querySelector('.form-search-input').value;
-    result = valeSearchInput == "" ? result : result.filter(item => {
+    let valueSearchInput = document.querySelector('.form-search-input').value;
+    result = valueSearchInput == "" ? result : result.filter(item => {
         return item.title.toString().toUpperCase().includes(valeSearchInput.toString().toUpperCase());
     })
+    console.log(result);
+    uploadProduct(result);
+}
+
+function showCategory(category) {
+    console.log(category);
+    let result = productAll;
+    result = category == "" ? result : result.filter(item => {
+        return item.category.toString().toUpperCase().includes(category.toString().toUpperCase());
+    })
+    console.log(result);
     uploadProduct(result);
 }

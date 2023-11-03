@@ -311,7 +311,7 @@
 }
 
 .detail .name {
-    font-size: xxx-large;
+    font-size: xx-large;
     margin: 0 0 10px 0;
     color: rgb(122, 14, 14);
 }
@@ -325,11 +325,39 @@
 
 .detail .description {
     margin-top: 20px;
+    color: rgb(251, 179, 85);
     font-size: medium;
     font-weight: 400;
     margin-bottom: 30px;
+    text-align: left;
+    margin-left: 20px;
+    border-top: 5px solid rgb(240, 131, 131);
 }
 
 .detail .content {
     width: 100%;
 } 
+
+/* No-result page*/
+.no-result {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0 50px 0;
+}
+
+.no-result-h {
+    font-size: 25px;
+    margin: 10px
+}
+
+.no-result-p {
+    width: 100%;
+    color: #757575;
+    text-align: center;
+}
+
+.no-result i {
+    color: #757575;
+    font-size: 80px;
+    margin-top: 30px;
+}
