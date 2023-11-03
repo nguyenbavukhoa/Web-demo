@@ -281,17 +281,30 @@
 
 .detailTitle {
     font-size: xx-large;
+    text-transform: uppercase;
     margin-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
     font-weight: 900;
     color: rgb(122, 14, 14);
+    position: relative;
+}
+
+.detailTitle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top: none;
+    height: 5px;
+    width: 400px;
+    background-image: linear-gradient(to right, rgba(144, 12, 12, 0.8), transparent);
 }
 
 .mainDetail {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
     padding-top: 60px;
     padding-bottom: 70px;
 }
@@ -306,7 +319,7 @@
 
 .detail .image img {
     width: 100%;
-    border-radius: 20px;;
+    border-radius: 20px;
     object-fit: cover;
 }
 
@@ -325,17 +338,21 @@
 
 .detail .description {
     margin-top: 20px;
-    color: rgb(251, 179, 85);
+    color: rgb(160, 155, 149);
     font-size: medium;
     font-weight: 400;
     margin-bottom: 30px;
     text-align: left;
     margin-left: 20px;
-    border-top: 5px solid rgb(240, 131, 131);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 3px solid rgba(122, 14, 14, 0.8);
+    border-bottom: 3px solid rgba(122, 14, 14, 0.8);
 }
 
 .detail .content {
     width: 100%;
+    border-left: 2px solid rgba(122, 14, 14, 0.8);
 } 
 
 /* No-result page*/
