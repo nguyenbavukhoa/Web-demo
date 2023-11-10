@@ -378,3 +378,25 @@
     font-size: 80px;
     margin-top: 30px;
 }
+
+/* Phan Trang */
+.listPage {
+    padding: 10px;
+    text-align: center;
+    list-style: none;
+}
+
+.listPage li {
+    display: inline-block;
+    margin: 0 7px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid rgb(122, 14, 14);
+    background-color: rgb(252, 251, 251);
+    cursor: pointer;
+}
+
+.listPage .active {
+    background-color: rgb(122, 14, 14);
+    color: white;
+}

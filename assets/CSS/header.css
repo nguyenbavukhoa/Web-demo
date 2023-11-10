@@ -9,7 +9,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 10;
 
   background-color: white;
   border-bottom-width: 1px;
@@ -143,38 +143,17 @@
 
 
 .right-section {
-  width: 180px;
+  width: 150px;
   margin-right: 20px;
   display: flex;
   align-items: center;
-  justify-content:space-around;
-  flex-shrink: 0;
-
+  justify-content:space-between;
 }
 
 .user-icon {
-  height: 30px;
+  height: 25px;
+  color: rgb(122, 14, 14);
   position: relative;
-}
-
-
-.shopping-icon {
-  height: 30px;
-  position: relative;
-}
-
-.notifications-count {
-  position: relative;
-  top: -15px;
-  right: 20px;
-  background-color: rgb(200, 0, 0);
-  color: white;
-  font-size: 11px;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 10px;
 }
 
 .header-bottom {
@@ -235,4 +214,38 @@
   transition: all 0.3s ease;
 }
 
+.header-middle-right-item-open {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  cursor: pointer;
+}
 
+.cart-icon-menu {
+  position: relative;
+}
+
+.cart-icon-menu i {
+  font-size: x-large;
+  font-weight: 500;
+  color:rgb(122, 14, 14);
+  padding-right: 10px;
+}
+
+.cart-icon-menu span {
+  color: white;
+  background: rgb(122, 14, 14);
+  height: 20px;
+  left: 20px;
+  top: -15px;
+  border-radius: 40px;
+  display: inline-block;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  position: absolute;
+  padding: 0px 7px;
+  z-index: 100;
+}

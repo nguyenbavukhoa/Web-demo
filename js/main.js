@@ -23,7 +23,6 @@ setInterval(function () {
 }, 3000);
 
 // get datas from products.json 
-
 function uploadProduct(showProduct) {
     // add data products to HTML
     let productHtml = '';
@@ -72,7 +71,8 @@ function searchProducts() {
         return item.title.toString().toUpperCase().includes(valueSearchInput.toString().toUpperCase());
     })
     console.log(result);
-    uploadProduct(result);
+    showHomeProduct(result);
+
 }
 
 function showCategory(category) {
@@ -82,5 +82,65 @@ function showCategory(category) {
         return item.category.toString().toUpperCase().includes(category.toString().toUpperCase());
     })
     console.log(result);
-    uploadProduct(result);
+    showHomeProduct(result);
+}
+
+// Phan Trang
+let thisPage = 1;
+let perPage = 12;
+let list = document.querySelectorAll('.product-grid .product-preview');
+
+function loadItem() {
+    let beginGet = perPage * (thisPage - 1);
+    let endGet = perPage * thisPage - 1;
+    list.forEach((item, index) => {
+        if (index >= beginGet && index <= endGet) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    })
+    listPage();
+}
+
+loadItem();
+
+function listPage() {
+    let count = Math.ceil((list.length / perPage < 1 ? 0 : list.length / perPage));
+    document.querySelector('.listPage').innerHTML = '';
+
+    if (thisPage != 1) {
+        let prev = document.createElement('li');
+        prev.innerText = 'Prev';
+        prev.setAttribute('onclick', 'changePage(' + (thisPage - 1) + ')');
+        document.querySelector('.listPage').appendChild(prev);
+    }
+
+    for (i = 1; i <= count; i++) {
+        let newPage = document.createElement('li');
+        newPage.innerText = i;
+        if (i == thisPage) {
+            newPage.classList.add('active');
+        }
+        newPage.setAttribute('onclick', 'changePage(' + i + ')');
+        document.querySelector('.listPage').appendChild(newPage);
+    }
+
+    if (thisPage != count && count > 0) {
+        let next = document.createElement('li');
+        next.innerText = 'Next';
+        next.setAttribute('onclick', 'changePage(' + (thisPage + 1) + ')');
+        document.querySelector('.listPage').appendChild(next);
+    }
+}
+
+function changePage(index) {
+    thisPage = index;
+    loadItem();
+}
+
+function showHomeProduct(products) {
+    uploadProduct(products);
+    list = document.querySelectorAll('.product-grid .product-preview');
+    loadItem();
 }
