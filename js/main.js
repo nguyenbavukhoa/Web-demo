@@ -68,7 +68,7 @@ function autoscrolldown() {
 
     var elementToScrollTo = document.getElementById('scrolldownlocation'); // element bạn muốn cuộn đến
 
-    if (elementToScrollTo) {d
+    if (elementToScrollTo) {
         elementToScrollTo.scrollIntoView({
             behavior: 'smooth', // tùy chọn để làm cho cuộn mượt mà với hiệu ứng
             block: 'start' // hoặc 'end' hoặc 'center', tùy thuộc vào cách bạn muốn phần tử hiển thị trong khung nhìn
