@@ -59,7 +59,45 @@ function uploadProduct(showProduct) {
     }
     listProducts.innerHTML = productHtml;
 
+
 }
+
+function autoscrolldown() {
+
+    var elementId = 'home-title';
+
+    var elementToScrollTo = document.getElementById('scrolldownlocation'); // element bạn muốn cuộn đến
+
+    if (elementToScrollTo) {d
+        elementToScrollTo.scrollIntoView({
+            behavior: 'smooth', // tùy chọn để làm cho cuộn mượt mà với hiệu ứng
+            block: 'start' // hoặc 'end' hoặc 'center', tùy thuộc vào cách bạn muốn phần tử hiển thị trong khung nhìn
+        });
+    }
+}
+
+// function autoscrolldown(distanceFromTop) {
+//     var elementId = 'home-title';
+//     var elementToScrollTo = document.getElementById(elementId);
+
+//     if (elementToScrollTo) {
+//         var elementRect = elementToScrollTo.getBoundingClientRect();
+//         var offset = elementRect.top + window.scrollY - distanceFromTop;
+
+//         window.scrollTo({
+//             top: offset,
+//             behavior: 'smooth'
+//         });
+//     }
+// }
+
+
+// function autoscrolldown() {
+//     window.scrollTo({
+//         top: 600, // 1000 là vị trí muốn cuộn đến
+//         behavior: 'smooth' // tùy chọn để làm cho cuộn mượt mà với hiệu ứng
+//     });
+// }
 
 window.onload = uploadProduct(JSON.parse(localStorage.getItem('products')));
 // Find Product
@@ -70,9 +108,8 @@ function searchProducts() {
     result = valueSearchInput == "" ? result : result.filter(item => {
         return item.title.toString().toUpperCase().includes(valueSearchInput.toString().toUpperCase());
     })
-    console.log(result);
     showHomeProduct(result);
-
+    autoscrolldown();
 }
 
 function showCategory(category) {
@@ -83,6 +120,7 @@ function showCategory(category) {
     })
     console.log(result);
     showHomeProduct(result);
+    autoscrolldown();
 }
 
 // Phan Trang
