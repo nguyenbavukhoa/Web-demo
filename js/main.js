@@ -66,7 +66,7 @@ function autoscrolldown() {
 
     var elementId = 'home-title';
 
-    var elementToScrollTo = document.getElementById('scrolldownlocation'); // element bạn muốn cuộn đến
+    var elementToScrollTo = document.getElementById(elementId); // element bạn muốn cuộn đến
 
     if (elementToScrollTo) {
         elementToScrollTo.scrollIntoView({
