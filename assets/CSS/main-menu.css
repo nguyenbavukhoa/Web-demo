@@ -1,3 +1,48 @@
+/*Modal Box*/
+
+.is-form {
+    background-color: #f9f9f9;
+    height: 25px;
+    width: 25px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    line-height: 20px;
+}
+
+.is-form:focus,
+.input-text:focus {
+    outline: none;
+}
+
+.is-form.plus,
+.is-form.minus {
+    border-radius: 50%;
+}
+
+.input-qty {
+    background-color: #fff;
+    height: 25px;
+    width: 30px;
+    text-align: center;
+    font-size: 14px;
+    display: inline-block;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    padding: 0;
+    border-radius: 5px;
+    outline: none;
+}
+
+.input-qty::-webkit-outer-spin-button,
+.input-qty::-webkit-inner-spin-button {
+    --webkit-appearance: none;
+    margin: 0;
+}
+
+
+
+
+
 .main-wrapper {
     overflow: hidden;
     /*padding-top: 60px;*/
@@ -338,9 +383,9 @@
 
 .detail .description {
     margin-top: 20px;
-    color: rgb(160, 155, 149);
+    color: rgb(131, 125, 119);
     font-size: medium;
-    font-weight: 400;
+    font-weight: 450;
     margin-bottom: 30px;
     text-align: left;
     margin-left: 20px;
@@ -352,7 +397,7 @@
 
 .detail .content {
     width: 100%;
-    border-left: 2px solid rgba(122, 14, 14, 0.8);
+    border-left: 3px solid rgba(122, 14, 14, 0.8);
 } 
 
 /* No-result page*/

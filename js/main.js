@@ -1,3 +1,6 @@
+// Close popup 
+const body = document.querySelector("body");
+
 // Auto hide header on scroll
 const headerNav = document.querySelector(".header-bottom");
 let lastScrollY = window.scrollY;
@@ -182,3 +185,101 @@ function showHomeProduct(products) {
     list = document.querySelectorAll('.product-grid .product-preview');
     loadItem();
 }
+
+
+// Open & Close Cart
+function openCart() {
+    // showCart();
+    document.querySelector('.modal-cart').classList.add('open');
+    body.style.overflow = "hidden";
+}
+
+function closeCart() {
+    document.querySelector('.modal-cart').classList.remove('open');
+    body.style.overflow = "auto";
+    updateAmount();
+}
+
+
+//Show gio hang
+function showCart() {
+    if (localStorage.getItem('currentuser') != null) {
+        let currentuser = JSON.parse(localStorage.getItem('currentuser'));
+        if (currentuser.cart.length != 0) {
+            document.querySelector('.gio-hang-trong').style.display = 'none';
+            document.querySelector('button.thanh-toan').classList.remove('disabled');
+            let productcarthtml = '';
+            currentuser.cart.forEach(item => {
+                let product = getProduct(item);
+                productcarthtml += `<li class="cart-item" data-id="${product.id}">
+                <div class="cart-item-info">
+                    <p class="cart-item-title">
+                        ${product.title}
+                    </p>
+                    <span class="cart-item-price price" data-price="${product.price}">
+                    ${vnd(parseInt(product.price))}
+                    </span>
+                </div>
+                <p class="product-note"><i class="fa-light fa-pencil"></i><span>${product.note}</span></p>
+                <div class="cart-item-control">
+                    <button class="cart-item-delete" onclick="deleteCartItem(${product.id},this)">Xóa</button>
+                    <div class="buttons_added">
+                        <input class="minus is-form" type="button" value="-" onclick="decreasingNumber(this)">
+                        <input class="input-qty" max="100" min="1" name="" type="number" value="${product.soluong}">
+                        <input class="plus is-form" type="button" value="+" onclick="increasingNumber(this)">
+                    </div>
+                </div>
+            </li>`
+            });
+            document.querySelector('.cart-list').innerHTML = productcarthtml;
+            updateCartTotal();
+            saveAmountCart();
+        } else {
+            document.querySelector('.gio-hang-trong').style.display = 'flex'
+        }
+    }
+    let modalCart = document.querySelector('.modal-cart');
+    let containerCart = document.querySelector('.cart-container');
+    let themmon = document.querySelector('.them-mon');
+    modalCart.onclick = function () {
+        closeCart();
+    }
+    themmon.onclick = function () {
+        closeCart();
+    }
+    containerCart.addEventListener('click', (e) => {
+        e.stopPropagation();
+    })
+}
+
+
+//Signup && Login Form
+
+// Chuyen doi qua lai SignUp & Login 
+let signup = document.querySelector('.signup-link');
+let login = document.querySelector('.login-link');
+let container = document.querySelector('.signup-login .modal-container');
+login.addEventListener('click', () => {
+    container.classList.add('active');
+})
+
+signup.addEventListener('click', () => {
+    container.classList.remove('active');
+})
+
+let signupbtn = document.getElementById('signup');
+let loginbtn = document.getElementById('login');
+let formsg = document.querySelector('.modal.signup-login')
+signupbtn.addEventListener('click', () => {
+    formsg.classList.add('open');
+    container.classList.remove('active');
+    body.style.overflow = "hidden";
+})
+
+loginbtn.addEventListener('click', () => {
+    document.querySelector('.form-message-check-login').innerHTML = '';
+    formsg.classList.add('open');
+    container.classList.add('active');
+    body.style.overflow = "hidden";
+})
+

@@ -568,24 +568,24 @@ function createProduct() {
 window.onload = createProduct();
 
 // Create admin account 
-// function createAdminAccount() {
-//     let accounts = localStorage.getItem("accounts");
-//     if (!accounts) {
-//         accounts = [];
-//         accounts.push({
-//             fullname: "Trần Nhật Sinh",
-//             phone: "0123456789",
-//             password: "123456",
-//             address: '',
-//             email: '',
-//             status: 1,
-//             join: new Date(),
-//             cart: [],
-//             userType: 1
-//         })
-//         localStorage.setItem('accounts', JSON.stringify(accounts));
-//     }
-// }
+function createAdminAccount() {
+    let accounts = localStorage.getItem("accounts");
+    if (!accounts) {
+        accounts = [];
+        accounts.push({
+            fullname: "Trần Nhật Sinh",
+            phone: "0123456789",
+            password: "123456",
+            address: '',
+            email: '',
+            status: 1,
+            join: new Date(),
+            cart: [],
+            userType: 1
+        })
+        localStorage.setItem('accounts', JSON.stringify(accounts));
+    }
+}
 
 
-// window.onload = createAdminAccount();
+window.onload = createAdminAccount();

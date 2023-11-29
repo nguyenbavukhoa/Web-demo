@@ -1,0 +1,74 @@
+.modal.signup-login .modal-container {
+    margin-top: 50px;
+    position: relative;
+    max-width: 1130px;
+    height: 550px;
+    background: aliceblue;;
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+}
+
+.modal-container .form-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 58%;
+    height: 100%;
+    padding: 80px;
+    color: rgb(122, 14, 14);
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.form-content .logo {
+    font-size: 30px;
+}
+
+.form-content h2 {
+    font-size: 40px;
+    line-height: 1;
+}
+
+.form-content h2 span {
+    font-size: 25px;
+}
+
+.text-sci p {
+    font-size: 16px;
+    margin: 20px 0;
+}
+
+.social-icons a i{
+    font-size: 20px;
+    margin-right: 10px;
+    padding: 10px;
+    width: 40px;
+    height: 42px;
+    color: aliceblue;
+    transition: transform 0.3s linear;
+    border: 1px solid rgb(122, 14, 14);
+    border-radius: 20%;
+}
+
+.social-icons a:hover i {
+    transform: scale(1.1);
+    color: aliceblue;
+    background:rgb(122, 14, 14);
+    border: none;
+}
+
+.modal-container .logreg-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 42%;
+    height: 100%;
+    background: red;
+}
+
+.logreg-box .form-content.login {
+    
+}
