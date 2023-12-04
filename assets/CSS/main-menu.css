@@ -39,10 +39,6 @@
     margin: 0;
 }
 
-
-
-
-
 .main-wrapper {
     overflow: hidden;
     /*padding-top: 60px;*/
@@ -71,7 +67,7 @@
     display: none;
 }
 
-.slide{
+.slide {
     width: 20%;
     transition: 2s;
 }
@@ -81,9 +77,10 @@
     height: 500px;
 }
 
+
 /* css for manual slide navigation */
 
-.navigation-manual{
+.navigation-manual {
     position: absolute;
     width: 95%;
     display: flex;
@@ -99,8 +96,7 @@
     transition: 1s;
 }
 
-.manual-btn:not(:last-child)
-{
+.manual-btn:not(:last-child) {
     margin-right: 40px;
 }
 
@@ -108,25 +104,26 @@
     background-color: rgb(122, 14, 14);
 }
 
-#radio1:checked ~ .first{
+#radio1:checked~.first {
     margin-left: 0;
 }
 
-#radio2:checked ~ .first{
+#radio2:checked~.first {
     margin-left: -20%;
 }
 
-#radio3:checked ~ .first{
+#radio3:checked~.first {
     margin-left: -40%;
 }
 
-#radio4:checked ~ .first{
+#radio4:checked~.first {
     margin-left: -60%;
 }
 
+
 /*css for automatic navigation*/
 
-.navigation-auto{
+.navigation-auto {
     position: absolute;
     width: 95%;
     display: flex;
@@ -134,7 +131,7 @@
     justify-content: center;
 }
 
-.navigation-auto div{
+.navigation-auto div {
     border: 2px solid #ffff;
     padding: 5px;
     border-radius: 10px;
@@ -142,24 +139,23 @@
     transition: 1s;
 }
 
-.navigation-auto div:not(:last-child)
-{
+.navigation-auto div:not(:last-child) {
     margin-right: 40px;
 }
 
-#radio1:checked ~ .navigation-auto .auto-btn1{
+#radio1:checked~.navigation-auto .auto-btn1 {
     background: rgb(122, 14, 14);
 }
 
-#radio2:checked ~ .navigation-auto .auto-btn2{
+#radio2:checked~.navigation-auto .auto-btn2 {
     background: rgb(122, 14, 14);
 }
 
-#radio3:checked ~ .navigation-auto .auto-btn3{
+#radio3:checked~.navigation-auto .auto-btn3 {
     background: rgb(122, 14, 14);
 }
 
-#radio4:checked ~ .navigation-auto .auto-btn4{
+#radio4:checked~.navigation-auto .auto-btn4 {
     background: rgb(122, 14, 14);
 }
 
@@ -224,6 +220,216 @@
     background-color: rgb(122, 14, 14);
     width: 25%;
     left: 38%;
+}
+
+
+/* Main account*/
+
+.main-account {
+    width: 100%;
+    border: 1px solid #dae2e6;
+    padding: 20px;
+}
+
+.main-account.active {
+    display: block;
+}
+
+.main-account-header {
+    padding-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    color: rgb(122, 14, 14);
+}
+
+.main-account-body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.main-account-body-row {
+    width: 100%;
+    display: flex;
+}
+
+.main-account-body-row>div {
+    width: 50%;
+}
+
+.main-account-body-col {
+    padding: 20px 0;
+    width: 50%;
+}
+
+.main-account-body-col .form-group {
+    margin-right: 30px;
+}
+
+#save-password,
+#save-info-user {
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: #e4e4e4e4;
+    background-color: rgb(122, 14, 14);
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#save-password i,
+#save-info-user i {
+    margin-right: 5px;
+}
+
+input[type=number] {
+    --moz-appearance: textfield;
+}
+
+
+/* Order History */
+
+.order-history-section {
+    padding-top: 20px;
+    width: 100%;
+}
+
+.order-history-group {
+    border: 1px solid #e5e5e5;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.order-history {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.order-history-left {
+    display: flex;
+}
+
+.order-history-left img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 14px;
+    border-radius: 5px;
+}
+
+.order-history-info p {
+    margin-top: 7px;
+}
+
+.order-history-info h4 {
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+.order-history-note {
+    color: #0000008a;
+    font-size: 14px;
+}
+
+.order-history-price {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.order-history-old-price {
+    font-size: 14px;
+    text-decoration: line-through;
+    color: #808080;
+}
+
+.order-history-current-price {
+    color: var(--red);
+    font-weight: 500;
+}
+
+.order-history-control {
+    border-top: 1px solid #f0f0f0;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#order-history-detail,
+.order-history-status-sp {
+    background-color: #eee;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    color: var(--text-color);
+    text-transform: uppercase;
+    position: relative;
+}
+
+.order-history-status-sp.complete {
+    background-color: #27ae60;
+    color: var(--white);
+    padding-left: 35px;
+}
+
+.order-history-status-sp.complete::before {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Pro";
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.order-history-status-sp.no-complete {
+    background-color: #f04e2e;
+    color: var(--white);
+    padding-left: 35px;
+}
+
+.order-history-status-sp.no-complete::before {
+    content: "\e1d4";
+    font-family: "Font Awesome 6 Pro";
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#order-history-detail {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: #e5e5e5;
+    color: var(--text-color);
+}
+
+#order-history-detail i {
+    margin-right: 5px;
+}
+
+.order-history-total-desc {
+    font-size: 15px;
+    margin-right: 15px;
+}
+
+.order-history-toltal-price {
+    color: var(--red);
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.empty-order-section {
+    text-align: center;
+}
+
+.empty-order-img {
+    width: 250px;
+    margin-bottom: 20px;
 }
 
 
@@ -322,7 +528,8 @@
     border: 2px outset rgb(122, 14, 14);
 }
 
-/* Detail page */ 
+
+/* Detail page */
 
 .detailTitle {
     font-size: xx-large;
@@ -398,9 +605,11 @@
 .detail .content {
     width: 100%;
     border-left: 3px solid rgba(122, 14, 14, 0.8);
-} 
+}
+
 
 /* No-result page*/
+
 .no-result {
     width: 100%;
     text-align: center;
@@ -426,7 +635,9 @@
     margin-top: 30px;
 }
 
+
 /* Phan Trang */
+
 .listPage {
     padding: 10px;
     text-align: center;

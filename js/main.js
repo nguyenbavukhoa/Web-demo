@@ -17,7 +17,9 @@ window.addEventListener("scroll", () => {
 // Auto switch main-wrapper
 
 var counter = 1;
-setInterval(function () {
+let currentUrl = window.location.href;
+console.log(currentUrl);
+setInterval(function() {
     document.getElementById('radio' + counter).checked = true;
     counter++;
     if (counter > 4) {
@@ -34,7 +36,7 @@ function uploadProduct(showProduct) {
         document.getElementById("home-title").style.display = "none";
         productHtml = `<div class="no-result"><div class="no-result-h">Tìm kiếm không có kết quả</div><div class="no-result-p">Xin lỗi, chúng tôi không thể tìm được kết quả hợp với tìm kiếm của bạn</div><div class="no-result-i"><i class="fa-light fa-face-sad-cry"></i></div></div>`;
     } else {
-        let products = showProduct.map(function (product) {
+        let products = showProduct.map(function(product) {
             return `
             <div class="product-preview">
                 <a href="productDetail.html?id=${product.id}" class="item">
@@ -79,32 +81,11 @@ function autoscrolldown() {
     }
 }
 
-// function autoscrolldown(distanceFromTop) {
-//     var elementId = 'home-title';
-//     var elementToScrollTo = document.getElementById(elementId);
-
-//     if (elementToScrollTo) {
-//         var elementRect = elementToScrollTo.getBoundingClientRect();
-//         var offset = elementRect.top + window.scrollY - distanceFromTop;
-
-//         window.scrollTo({
-//             top: offset,
-//             behavior: 'smooth'
-//         });
-//     }
-// }
-
-
-// function autoscrolldown() {
-//     window.scrollTo({
-//         top: 600, // 1000 là vị trí muốn cuộn đến
-//         behavior: 'smooth' // tùy chọn để làm cho cuộn mượt mà với hiệu ứng
-//     });
-// }
-
 window.onload = uploadProduct(JSON.parse(localStorage.getItem('products')));
+
 // Find Product
 var productAll = JSON.parse(localStorage.getItem('products'));
+
 function searchProducts() {
     let result = productAll;
     let valueSearchInput = document.querySelector('.form-search-input').value;
@@ -144,7 +125,7 @@ function loadItem() {
     listPage();
 }
 
-loadItem();
+window.onload = loadItem();
 
 function listPage() {
     let count = Math.ceil((list.length / perPage < 1 ? 0 : list.length / perPage));
@@ -186,10 +167,197 @@ function showHomeProduct(products) {
     loadItem();
 }
 
+// Lay so luong hang
+function getAmountCart() {
+    let currentuser = JSON.parse(localStorage.getItem('currentuser'))
+    let amount = 0;
+    currentuser.cart.forEach(element => {
+        amount += parseInt(element.soluong);
+    });
+    return amount;
+}
+
+//Update Amount Cart 
+function updateAmount() {
+    if (localStorage.getItem('currentuser') != null) {
+        let amount = getAmountCart();
+        document.querySelector('.count-product-cart').innerText = amount;
+    }
+}
+
+// Kiểm tra xem có tài khoản đăng nhập không ?
+function kiemtradangnhap() {
+    let currentUser = localStorage.getItem('currentuser');
+    if (currentUser != null) {
+        let user = JSON.parse(currentUser);
+        document.querySelector('.auth-container').innerHTML = `<span class="text-tk">${user.fullname} <i class="fa-sharp fa-solid fa-caret-down"></span>`
+        document.querySelector('.header-middle-right-menu').innerHTML = `<li><a href="javascript:;" onclick="myAccount()"><i class="fa-light fa-circle-user"></i> Tài khoản của tôi</a></li>
+            <li><a href="javascript:;" onclick="orderHistory()"><i class="fa-regular fa-bags-shopping"></i> Đơn hàng đã mua</a></li>
+            <li class="border"><a id="logout" href="javascript:;"><i class="fa-light fa-right-from-bracket"></i> Thoát tài khoản</a></li>`
+        document.querySelector('#logout').addEventListener('click', logOut);
+        document.querySelector('.user-icon').innerHTML = '<i class="fa-solid fa-user"></i>'
+        updateAmount();
+    }
+}
+
+window.onload = kiemtradangnhap();
+
+function logOut() {
+    let accounts = JSON.parse(localStorage.getItem('accounts'));
+    user = JSON.parse(localStorage.getItem('currentuser'));
+    let vitri = accounts.findIndex(item => item.phone == user.phone)
+    accounts[vitri].cart.length = 0;
+    for (let i = 0; i < user.cart.length; i++) {
+        accounts[vitri].cart[i] = user.cart[i];
+    }
+    localStorage.setItem('accounts', JSON.stringify(accounts));
+    localStorage.removeItem('currentuser');
+    window.location = "./index.html";
+}
+
+
+// Chuyển đổi trang chủ và trang thông tin tài khoản
+function myAccount() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('trangchu').classList.add('hide');
+    document.getElementById('order-history').classList.remove('open');
+    document.getElementById('account-user').classList.add('open');
+    userInfo();
+}
+
+// Chuyển đổi trang chủ và trang xem lịch sử đặt hàng 
+function orderHistory() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('account-user').classList.remove('open');
+    document.getElementById('trangchu').classList.add('hide');
+    document.getElementById('order-history').classList.add('open');
+    renderOrderProduct();
+}
+
+function emailIsValid(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+}
+
+function userInfo() {
+    let user = JSON.parse(localStorage.getItem('currentuser'));
+    document.getElementById('infoname').value = user.fullname;
+    document.getElementById('infophone').value = user.phone;
+    document.getElementById('infoemail').value = user.email;
+    document.getElementById('infoaddress').value = user.address;
+    if (user.email == undefined) {
+        infoemail.value = '';
+    }
+    if (user.address == undefined) {
+        infoaddress.value = '';
+    }
+}
+
+// Thay doi thong tin
+function changeInformation() {
+    let accounts = JSON.parse(localStorage.getItem('accounts'));
+    let user = JSON.parse(localStorage.getItem('currentuser'));
+    let infoname = document.getElementById('infoname');
+    let infoemail = document.getElementById('infoemail');
+    let infoaddress = document.getElementById('infoaddress');
+
+    user.fullname = infoname.value;
+    if (infoemail.value.length > 0) {
+        if (!emailIsValid(infoemail.value)) {
+            document.querySelector('.inforemail-error').innerHTML = 'Vui lòng nhập lại email!';
+            infoemail.value = '';
+        } else {
+            user.email = infoemail.value;
+        }
+    }
+
+    if (infoaddress.value.length > 0) {
+        user.address = infoaddress.value;
+    }
+
+    let vitri = accounts.findIndex(item => item.phone == user.phone)
+    alert(`Vi tri: ${vitri}`);
+    accounts[vitri].fullname = user.fullname;
+    accounts[vitri].email = user.email;
+    accounts[vitri].address = user.address;
+    localStorage.setItem('currentuser', JSON.stringify(user));
+    localStorage.setItem('accounts', JSON.stringify(accounts));
+    kiemtradangnhap();
+    toast({ title: 'Success', message: 'Cập nhật thông tin thành công !', type: 'success', duration: 3000 });
+}
+
+
+// Đổi mật khẩu 
+function changePassword() {
+    let currentUser = JSON.parse(localStorage.getItem("currentuser"));
+    let passwordCur = document.getElementById('password-cur-info');
+    let passwordAfter = document.getElementById('password-after-info');
+    let passwordConfirm = document.getElementById('password-comfirm-info');
+    let check = true;
+    if (passwordCur.value.length == 0) {
+        document.querySelector('.password-cur-info-error').innerHTML = 'Vui lòng nhập mật khẩu hiện tại';
+        check = false;
+    } else {
+        document.querySelector('.password-cur-info-error').innerHTML = '';
+    }
+
+    if (passwordAfter.value.length == 0) {
+        document.querySelector('.password-after-info-error').innerHTML = 'Vui lòn nhập mật khẩu mới';
+        check = false;
+    } else {
+        document.querySelector('.password-after-info-error').innerHTML = '';
+    }
+
+    if (passwordConfirm.value.length == 0) {
+        document.querySelector('.password-after-comfirm-error').innerHTML = 'Vui lòng nhập mật khẩu xác nhận';
+        check = false;
+    } else {
+        document.querySelector('.password-after-comfirm-error').innerHTML = '';
+    }
+
+    if (check == true) {
+        if (passwordCur.value.length > 0) {
+            if (passwordCur.value == currentUser.password) {
+                document.querySelector('.password-cur-info-error').innerHTML = '';
+                if (passwordAfter.value.length > 0) {
+                    if (passwordAfter.value.length < 6) {
+                        document.querySelector('.password-after-info-error').innerHTML = 'Vui lòng nhập mật khẩu mới có số  kí tự lớn hơn bằng 6';
+                    } else {
+                        document.querySelector('.password-after-info-error').innerHTML = '';
+                        if (passwordConfirm.value.length > 0) {
+                            if (passwordConfirm.value == passwordAfter.value) {
+                                document.querySelector('.password-after-comfirm-error').innerHTML = '';
+                                currentUser.password = passwordAfter.value;
+                                localStorage.setItem('currentuser', JSON.stringify(currentUser));
+                                let userChange = JSON.parse(localStorage.getItem('currentuser'));
+                                let accounts = JSON.parse(localStorage.getItem('accounts'));
+                                let accountChange = accounts.find(acc => {
+                                    return acc.phone = userChange.phone;
+                                })
+                                accountChange.password = userChange.password;
+                                localStorage.setItem('accounts', JSON.stringify(accounts));
+                                toast({ title: 'Success', message: 'Đổi mật khẩu thành công !', type: 'success', duration: 3000 });
+                            } else {
+                                document.querySelector('.password-after-comfirm-error').innerHTML = 'Mật khẩu bạn nhập không trùng khớp';
+                            }
+                        } else {
+                            document.querySelector('.password-after-comfirm-error').innerHTML = 'Vui lòng xác nhận mật khẩu';
+                        }
+                    }
+                } else {
+                    document.querySelector('.password-after-info-error').innerHTML = 'Vui lòng nhập mật khẩu mới';
+                }
+            } else {
+                document.querySelector('.password-cur-info-error').innerHTML = 'Bạn đã nhập sai mật khẩu hiện tại';
+            }
+        }
+    }
+}
+
+
 
 // Open & Close Cart
 function openCart() {
-    // showCart();
+    showCart();
     document.querySelector('.modal-cart').classList.add('open');
     body.style.overflow = "hidden";
 }
@@ -199,7 +367,6 @@ function closeCart() {
     body.style.overflow = "auto";
     updateAmount();
 }
-
 
 //Show gio hang
 function showCart() {
@@ -241,45 +408,13 @@ function showCart() {
     let modalCart = document.querySelector('.modal-cart');
     let containerCart = document.querySelector('.cart-container');
     let themmon = document.querySelector('.them-mon');
-    modalCart.onclick = function () {
+    modalCart.onclick = function() {
         closeCart();
     }
-    themmon.onclick = function () {
+    themmon.onclick = function() {
         closeCart();
     }
     containerCart.addEventListener('click', (e) => {
         e.stopPropagation();
     })
 }
-
-
-//Signup && Login Form
-
-// Chuyen doi qua lai SignUp & Login 
-let signup = document.querySelector('.signup-link');
-let login = document.querySelector('.login-link');
-let container = document.querySelector('.signup-login .modal-container');
-login.addEventListener('click', () => {
-    container.classList.add('active');
-})
-
-signup.addEventListener('click', () => {
-    container.classList.remove('active');
-})
-
-let signupbtn = document.getElementById('signup');
-let loginbtn = document.getElementById('login');
-let formsg = document.querySelector('.modal.signup-login')
-signupbtn.addEventListener('click', () => {
-    formsg.classList.add('open');
-    container.classList.remove('active');
-    body.style.overflow = "hidden";
-})
-
-loginbtn.addEventListener('click', () => {
-    document.querySelector('.form-message-check-login').innerHTML = '';
-    formsg.classList.add('open');
-    container.classList.add('active');
-    body.style.overflow = "hidden";
-})
-
