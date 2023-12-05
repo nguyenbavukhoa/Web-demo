@@ -275,7 +275,6 @@ function changeInformation() {
     }
 
     let vitri = accounts.findIndex(item => item.phone == user.phone)
-    alert(`Vi tri: ${vitri}`);
     accounts[vitri].fullname = user.fullname;
     accounts[vitri].email = user.email;
     accounts[vitri].address = user.address;
@@ -331,7 +330,7 @@ function changePassword() {
                                 let userChange = JSON.parse(localStorage.getItem('currentuser'));
                                 let accounts = JSON.parse(localStorage.getItem('accounts'));
                                 let accountChange = accounts.find(acc => {
-                                    return acc.phone = userChange.phone;
+                                    return acc.phone == userChange.phone;
                                 })
                                 accountChange.password = userChange.password;
                                 localStorage.setItem('accounts', JSON.stringify(accounts));
